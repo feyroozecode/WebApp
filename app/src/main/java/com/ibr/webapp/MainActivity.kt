@@ -28,6 +28,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import com.ibr.webapp.ui.theme.WebAppTheme
 
+/*
+  Classe Principal appelant notre View a savoir MainContainer
+*/
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +48,17 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// lien de la page a afficher par le webview
 const val BASE_URL:String = "https://www.google.com"
 
+/*
+  Notre Ecran principal
+  Diviser en plusieurs partie
+  - Scaffold => Notre echafaudage(represente le squelette de notre ecran)
+     Le Scaffold contient deux (2) partie l'entete et le contenue
+    - topBar un paramatre de Scaffold pour ajouter une entete TopAppBar
+    - content: Vue principal a afficher dans le corp de l'ecran ici: MyWebView
+*/
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainContent() {
@@ -72,6 +84,14 @@ fun MainContent() {
     )
 }
 
+/*
+  Notre WebView affichant la page web
+  avec un parametre pour le lien de la page a charger
+  On utilise ici AndroidView qui est composable et on lui passe comme paramatre
+  un WebView(Composable)
+  on applique un layoutParams pour ocupper tout le space de l'ecran
+  Puis on charge l'app avec @loadUrl un parametre de WebView
+*/
 @Composable
 fun MyWebView(url: String) {
 
@@ -93,7 +113,7 @@ fun MyWebView(url: String) {
     )
 
 }
-
+// Pour affciher en previsualant notre application
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
